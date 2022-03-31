@@ -27,6 +27,8 @@ public enum PresentingContext {
   case requestEthererumPermissions(_ request: WebpagePermissionRequest)
   /// Shows the user only the unlock/setup screen then dismisses to view an unlocked panel
   case panelUnlockOrSetup
+  /// Shows when the users want to edit connected account the the webpage
+  case editSiteConnection(_ origin: URL, handler: ([String]) -> Void)
 }
 
 /// The initial wallet controller to present when the user wants to view their wallet

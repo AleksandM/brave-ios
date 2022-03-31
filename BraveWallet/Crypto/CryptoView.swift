@@ -98,6 +98,15 @@ public struct CryptoView: View {
               )
             case .panelUnlockOrSetup:
               EmptyView()
+            case .editSiteConnection(let origin, let handler):
+              EditSiteConnectionView(
+                keyringStore: keyringStore,
+                origin: origin,
+                onDismiss: { accounts in
+                  handler(accounts)
+                  dismissAction?()
+                }
+              )
             }
           }
           .transition(.asymmetric(insertion: .identity, removal: .opacity))

@@ -2094,5 +2094,54 @@ extension Strings {
       value: "View the addresses of your permitted accounts (required)",
       comment: "A text displayed below the account address in new site connection confirmation step, in order to make sure users double check the account address they are going to allow the dapp to connect with."
     )
+    public static let editSiteConnectionScreenTitle = NSLocalizedString(
+      "wallet.editSiteConnectionScreenTitle",
+      tableName: "BraveWallet",
+      bundle: .braveWallet,
+      value: "Connections",
+      comment: "The navigation title of the screen for users to edit dapps site connection with users' Brave Wallet accounts."
+    )
+    public static let editSiteConnectionConnectedAccount = NSLocalizedString(
+      "wallet.editSiteConnectionConnectedAccount",
+      tableName: "BraveWallet",
+      bundle: .braveWallet,
+      value: "%lld %@ connected",
+      comment: "The amount of current permitted wallet accounts to the dapp site. It is displayed below the origin url of the dapp site in edit site connection screen. '%lld' refers to a number, %@ is `account` for singular and `accounts` for plural (for example \"1 account connected\" or \"2 accounts connected\")"
+    )
+    public static let editSiteConnectionAccountSingular = NSLocalizedString(
+      "wallet.editSiteConnectionAccountSingular",
+      tableName: "BraveWallet",
+      bundle: .braveWallet,
+      value: "account",
+      comment: "The singular word that will be used in `editSiteConnectionConnectedAccount`."
+    )
+    public static let editSiteConnectionAccountPlural = NSLocalizedString(
+      "wallet.editSiteConnectionAccountPlural",
+      tableName: "BraveWallet",
+      bundle: .braveWallet,
+      value: "accounts",
+      comment: "The plural word that will beused in `editSiteConnectionConnectedAccount`."
+    )
+    public static let editSiteConnectionAccountActionConnect = NSLocalizedString(
+      "wallet.editSiteConnectionAccountActionConnect",
+      tableName: "BraveWallet",
+      bundle: .braveWallet,
+      value: "Connect",
+      comment: "The title of the button for users to click so that they connect wallet account to the dapp site(also permission given). It will be displayed at the right hand side of each account option in edit site connection screen."
+    )
+    public static let editSiteConnectionAccountActionDisconnect = NSLocalizedString(
+      "wallet.editSiteConnectionAccountActionDisconnect",
+      tableName: "BraveWallet",
+      bundle: .braveWallet,
+      value: "Disconnect",
+      comment: "The title of the button for users to click so that they disconnect wallet account to the dapp site(also permission removed). It will be displayed at the right hand side of each account option in edit site connection screen."
+    )
+    public static let editSiteConnectionAccountActionSwitch = NSLocalizedString(
+      "wallet.editSiteConnectionAccountActionDisconnect",
+      tableName: "BraveWallet",
+      bundle: .braveWallet,
+      value: "Switch",
+      comment: "The title of the button for users to click so that they disconnect wallet account to the dapp site(also permission removed). It will be displayed at the right hand side of each account option in edit site connection screen."
+    )
   }
 }
