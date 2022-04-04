@@ -7,11 +7,12 @@ import Foundation
 import BraveCore
 
 class AccountActivityStore: ObservableObject {
-  let account: BraveWallet.AccountInfo
+  private(set) var account: BraveWallet.AccountInfo
   @Published private(set) var assets: [AssetViewModel] = []
   @Published private(set) var transactions: [BraveWallet.TransactionInfo] = []
   @Published private(set) var allTokens: [BraveWallet.BlockchainToken] = []
 
+  private let keyringService: BraveWalletKeyringService
   private let walletService: BraveWalletBraveWalletService
   private let rpcService: BraveWalletJsonRpcService
   private let assetRatioService: BraveWalletAssetRatioService
@@ -20,6 +21,7 @@ class AccountActivityStore: ObservableObject {
 
   init(
     account: BraveWallet.AccountInfo,
+    keyringService: BraveWalletKeyringService,
     walletService: BraveWalletBraveWalletService,
     rpcService: BraveWalletJsonRpcService,
     assetRatioService: BraveWalletAssetRatioService,
@@ -27,12 +29,14 @@ class AccountActivityStore: ObservableObject {
     blockchainRegistry: BraveWalletBlockchainRegistry
   ) {
     self.account = account
+    self.keyringService = keyringService
     self.walletService = walletService
     self.rpcService = rpcService
     self.assetRatioService = assetRatioService
     self.txService = txService
     self.blockchainRegistry = blockchainRegistry
     
+    self.keyringService.add(self)
     self.rpcService.add(self)
     self.txService.add(self)
   }
@@ -92,6 +96,41 @@ class AccountActivityStore: ObservableObject {
       self.transactions =
         transactions
         .sorted(by: { $0.createdTime > $1.createdTime })
+    }
+  }
+}
+
+extension AccountActivityStore: BraveWalletKeyringServiceObserver {
+  func keyringCreated(_ keyringId: String) {
+  }
+  
+  func keyringRestored(_ keyringId: String) {
+  }
+  
+  func keyringReset() {
+  }
+  
+  func locked() {
+  }
+  
+  func unlocked() {
+  }
+  
+  func backedUp() {
+  }
+  
+  func accountsChanged() {
+  }
+  
+  func autoLockMinutesChanged() {
+  }
+  
+  func selectedAccountChanged(_ coin: BraveWallet.CoinType) {
+    keyringService.defaultKeyringInfo { [self] keyringInfo in
+      keyringService.selectedAccount(coin) { [self] accountAddress in
+        account = keyringInfo.accountInfos.first(where: { $0.address == accountAddress }) ?? keyringInfo.accountInfos.first!
+        update()
+      }
     }
   }
 }
