@@ -264,6 +264,7 @@ struct WalletPanelView: View {
             Color.white.opacity(0.6)
               .frame(width: pixelLength)
             Button {
+              presentWalletWithContext(.transactionHistory)
             } label: {
               Image("brave.history")
                 .imageScale(.large)
