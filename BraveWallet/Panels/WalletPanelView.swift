@@ -159,7 +159,7 @@ struct WalletPanelView: View {
         if isConnected {
           Image(systemName: "checkmark")
         }
-        Text(isConnected ? "Connected…" : "Connect")
+        Text(isConnected ? Strings.Wallet.walletPanelConnected : Strings.Wallet.walletPanelConnect)
           .fontWeight(.bold)
           .lineLimit(1)
       }
@@ -200,7 +200,7 @@ struct WalletPanelView: View {
   var body: some View {
     ScrollView(.vertical, showsIndicators: false) {
       VStack(spacing: 0) {
-        Text("Brave Wallet")
+        Text(Strings.Wallet.braveWallet)
           .font(.headline)
           .padding(16)
           .frame(maxWidth: .infinity)
