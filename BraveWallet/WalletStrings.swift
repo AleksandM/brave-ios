@@ -1842,12 +1842,12 @@ extension Strings {
       value: "Clear & replace the incomplete transaction(s)",
       comment: "Text of toggle for a confirmation prompt when there's a backlog of wallet transactions"
     )
-    public static let transactionBacklogLearnMoreButton = NSLocalizedString(
-      "wallet.transactionBacklogLearnMoreButton",
+    public static let learnMore = NSLocalizedString(
+      "wallet.learnMore",
       tableName: "BraveWallet",
       bundle: .braveWallet,
       value: "Learn More",
-      comment: "Button to learn more about incomplete/pending wallet transactions."
+      comment: "1. Button to learn more about incomplete/pending wallet transactions. 2. The title of the button in wallet panel when users haven't set up a wallet yet."
     )
     public static let transactionBacklogAfterReplacement = NSLocalizedString(
       "wallet.transactionBacklogAfterReplacement",
@@ -2093,6 +2093,20 @@ extension Strings {
       bundle: .braveWallet,
       value: "View the addresses of your permitted accounts (required)",
       comment: "A text displayed below the account address in new site connection confirmation step, in order to make sure users double check the account address they are going to allow the dapp to connect with."
+    )
+    public static let walletPanelUnlockWallet = NSLocalizedString(
+      "wallet.walletPanelUnlockWallet",
+      tableName: "BraveWallet",
+      bundle: .braveWallet,
+      value: "Unlock wallet",
+      comment: "The title of the button in wallet panel when wallet is locked. Users can click it to open full screen unlock wallet screen."
+    )
+    public static let walletPanelSetupWalletDescription = NSLocalizedString(
+      "wallet.walletPanelSetupWalletDescription",
+      tableName: "BraveWallet",
+      bundle: .braveWallet,
+      value: "Use this panel to securely access web3 and all your crypto assets.",
+      comment: "The description for wallet panel when users haven't set up a wallet yet."
     )
   }
 }

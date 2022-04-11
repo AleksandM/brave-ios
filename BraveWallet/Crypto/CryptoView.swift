@@ -137,6 +137,17 @@ public struct CryptoView: View {
                   }
                 )
               }
+            case .settings:
+              NavigationView {
+                WalletSettingsView(
+                  settingsStore: store.settingsStore,
+                  networkStore: store.networkStore,
+                  keyringStore: keyringStore
+                )
+                .toolbar {
+                  dismissButtonToolbarContents
+                }
+              }
             }
           }
           .transition(.asymmetric(insertion: .identity, removal: .opacity))
