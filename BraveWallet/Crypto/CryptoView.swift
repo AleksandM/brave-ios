@@ -102,8 +102,8 @@ public struct CryptoView: View {
               EditSiteConnectionView(
                 keyringStore: keyringStore,
                 origin: origin,
-                onDismiss: { accounts in
-                  handler(accounts)
+                onDismiss: { permittedAccounts in
+                  handler(permittedAccounts)
                   dismissAction?()
                 }
               )

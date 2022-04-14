@@ -13,7 +13,7 @@ import Data
 struct EditSiteConnectionView: View {
   @ObservedObject var keyringStore: KeyringStore
   var origin: URL
-  var onDismiss: ([String]) -> Void
+  var onDismiss: (_ permittedAccounts: [String]) -> Void
   
   @ScaledMetric private var faviconSize = 48
   
