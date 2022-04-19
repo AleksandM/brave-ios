@@ -8,6 +8,7 @@ import Shared
 import Data
 import BraveShared
 import BraveCore
+import JitsiMeetSDK
 
 private let log = Logger.browserLogger
 private let rewardsLog = Logger.braveCoreLogger
@@ -484,7 +485,45 @@ extension BrowserViewController: WKNavigationDelegate {
         // The website waits on us until this is called with either results or null.
         tab.injectResults()
       }
-
+      
+      if webView.url?.normalizedHost() == "talk.brave.com" {
+        webView.evaluateSafeJavaScript(functionName: "document.getElementsByTagName('iframe')[0].src", contentWorld: .defaultClient, asFunction: false) { result, error in
+          guard let src = result as? String,
+                let components = URLComponents(string: src)
+          else {
+            return
+          }
+          let room = String(components.path.dropFirst(1))
+          let jwt = components.queryItems?.first(where: { $0.name == "jwt" })?.value
+          
+          let options = JitsiMeetConferenceOptions.fromBuilder { (builder) in
+            builder.room = room
+            builder.token = jwt
+            builder.serverURL = URL(string: "https://8x8.vc")
+            builder.setFeatureFlag("welcomepage.enabled", withValue: false)
+          }
+          
+          jitsiMeetView = JitsiMeetView()
+          jitsiMeetView?.delegate = self
+          // setup view controller
+          let vc = UIViewController()
+          vc.modalPresentationStyle = .fullScreen
+          vc.view = jitsiMeetView
+          vc.navigationItem.rightBarButtonItem = .init(title: "Done", image: nil, primaryAction: .init(handler: { [weak self] _ in
+            self?.dismiss(animated: true)
+          }), menu: nil)
+          
+          pipViewCoordinator = PiPViewCoordinator(withView: jitsiMeetView!)
+          pipViewCoordinator?.configureAsStickyView(withParentView: self.view)
+          
+          jitsiMeetView?.join(options)
+          jitsiMeetView?.alpha = 0
+          
+          pipViewCoordinator?.show()
+//          self.present(vc, animated: true)
+        }
+      }
+      
       navigateInTab(tab: tab, to: navigation)
       if let url = tab.url, tab.shouldClassifyLoadsForAds {
         let faviconURL = URL(string: tab.displayFavicon?.url ?? "")
@@ -560,6 +599,28 @@ extension WKNavigationType: CustomDebugStringConvertible {
     case .reload: return "reload"
     @unknown default:
       return "Unknown(\(rawValue))"
+    }
+  }
+}
+
+private var pipViewCoordinator: PiPViewCoordinator?
+private var jitsiMeetView: JitsiMeetView?
+
+extension BrowserViewController: JitsiMeetViewDelegate {
+  func conferenceTerminated(_ data: [AnyHashable: Any]!) {
+    dismiss(animated: true)
+  }
+  func ready(toClose data: [AnyHashable: Any]!) {
+    DispatchQueue.main.async {
+      pipViewCoordinator?.hide() { _ in
+        jitsiMeetView?.removeFromSuperview()
+      }
+    }
+  }
+  
+  func enterPicture(inPicture data: [AnyHashable: Any]!) {
+    DispatchQueue.main.async {
+      pipViewCoordinator?.enterPictureInPicture()
     }
   }
 }
