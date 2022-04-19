@@ -208,6 +208,7 @@ struct WalletPanelView: View {
             Image(systemName: "arrow.up.left.and.arrow.down.right")
               .rotationEffect(.init(degrees: 90))
           }
+          .accessibilityLabel(Strings.Wallet.walletFullScreenAccessibilityTitle)
           Spacer()
           Text(Strings.Wallet.braveWallet)
             .font(.headline)
@@ -215,11 +216,18 @@ struct WalletPanelView: View {
               Color.clear
             )
           Spacer()
-          Button {
-            presentWalletWithContext(.settings)
+          Menu {
+            Button(action: { keyringStore.lock() }) {
+              Label(Strings.Wallet.lock, image: "brave.lock")
+            }
+            Divider()
+            Button(action: { presentWalletWithContext(.settings) }) {
+              Label(Strings.Wallet.settings, image: "brave.gear")
+            }
           } label: {
             Image(systemName: "ellipsis")
           }
+          .accessibilityLabel(Strings.Wallet.otherWalletActionsAccessibilityTitle)
         }
         .padding(16)
         .overlay(
