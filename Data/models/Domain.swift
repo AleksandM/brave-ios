@@ -34,6 +34,8 @@ public final class Domain: NSManagedObject, CRUD {
   private var urlComponents: URLComponents? {
     return URLComponents(string: url ?? "")
   }
+  
+  private static let containsEthereumPermissionsPredicate = NSPredicate(format: "wallet_permittedAccounts != nil && wallet_permittedAccounts != ''")
 
   /// A domain can be created in many places,
   /// different save strategies are used depending on its relationship(eg. attached to a Bookmark) or browsing mode.
@@ -157,6 +159,11 @@ public final class Domain: NSManagedObject, CRUD {
       return permittedAccount.components(separatedBy: ",").contains(account)
     }
     return false
+  }
+
+  public class func allDomainsWithEthereumPermissions(context: NSManagedObjectContext? = nil) -> [Domain] {
+    let predicate = Domain.containsEthereumPermissionsPredicate
+    return all(where: predicate, context: context ?? DataController.viewContext) ?? []
   }
   
   public static func clearAllEthereumPermissions(_ completionOnMain: (() -> Void)? = nil) {
