@@ -330,6 +330,20 @@ class SettingsViewController: TableViewController {
         option: Preferences.General.mediaAutoBackgrounding,
         image: #imageLiteral(resourceName: "background_play_settings_icon").template),
     ])
+    
+    // We do NOT persistently save page-zoom settings in Private Browsing
+    if !PrivateBrowsingManager.shared.isPrivateBrowsing {
+      general.rows.append(
+        Row(text: Strings.PageZoom.settingsMenuTitle,
+            selection: { [weak self] in
+              let controller = PageZoomSettingsController()
+              self?.navigationController?.pushViewController(controller, animated: true)
+            },
+            image: UIImage(systemName: "textformat.size") ?? UIImage(),
+            accessory: .disclosureIndicator,
+            cellClass: MultilineValue1Cell.self)
+      )
+    }
 
     return general
   }()
