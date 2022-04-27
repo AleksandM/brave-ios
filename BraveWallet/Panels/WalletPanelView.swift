@@ -334,6 +334,7 @@ struct WalletPanelView_Previews: PreviewProvider {
         keyringStore: .previewStoreWithWalletCreated,
         cryptoStore: .previewStore,
         networkStore: .previewStore,
+        accountActivityStore: .previewStore,
         origin: .init(url: URL(string: "https://app.uniswap.org")!),
         presentWalletWithContext: { _ in },
         presentBuySendSwap: {}
