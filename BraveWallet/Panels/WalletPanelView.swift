@@ -300,7 +300,7 @@ struct WalletPanelView: View {
       } else {
         cryptoStore.fetchPendingRequests()
       }
-      if let accounts =  Domain.ethereumPermissions(forUrl: origin) {
+      if let url = origin.url, let accounts = Domain.ethereumPermissions(forUrl: url) {
         permittedAccounts = accounts
       }
     }
