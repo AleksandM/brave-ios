@@ -263,6 +263,8 @@
 		2727369B24A65F650096DCB9 /* UIActionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2727369A24A65F650096DCB9 /* UIActionExtensions.swift */; };
 		2729E7D326F502AC00200648 /* AccountPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2729E7D226F502AC00200648 /* AccountPicker.swift */; };
 		272B862B270BD96F005ED304 /* SandboxInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272B862A270BD96F005ED304 /* SandboxInspectorView.swift */; };
+		272B94B3282AC69C00DCBCCE /* GiphyUISDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 272B94B2282AC69C00DCBCCE /* GiphyUISDK.xcframework */; };
+		272B94B4282AC69C00DCBCCE /* GiphyUISDK.xcframework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 272B94B2282AC69C00DCBCCE /* GiphyUISDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		273EB3A72422AB24002A8AAF /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9616E6A240EE43F00667C2D /* PaymentRequest.swift */; };
 		273F981A281884A400C7E7D4 /* ForcePasteHelper.js in Resources */ = {isa = PBXBuildFile; fileRef = 273F980F281884A400C7E7D4 /* ForcePasteHelper.js */; };
 		273F9857281AE3D100C7E7D4 /* BraveCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27AD20C226851C5400889AA7 /* BraveCore.xcframework */; };
@@ -1218,8 +1220,8 @@
 		D506715C27E2AAB700560631 /* TransactionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D506715B27E2AAB700560631 /* TransactionHeader.swift */; };
 		D511314B2800C16100C81683 /* TransactionConfirmationStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D511314A2800C16100C81683 /* TransactionConfirmationStoreTests.swift */; };
 		D51CD9C727DBC6A600C01104 /* PortfolioStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51CD9C627DBC6A600C01104 /* PortfolioStoreTests.swift */; };
-		D552E6922807231F00A847F3 /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D1DC51320AC9AF900905E5A /* Data.framework */; };
 		D5412B452819F24000463106 /* WalletNumberFormatterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5412B442819F24000463106 /* WalletNumberFormatterExtensions.swift */; };
+		D552E6922807231F00A847F3 /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D1DC51320AC9AF900905E5A /* Data.framework */; };
 		D5A691EC27DF93AD000CC4B3 /* TransactionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A691EB27DF93AD000CC4B3 /* TransactionDetailsView.swift */; };
 		D5ACA7CE27FB7D08002443CE /* BraveCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27AD20C226851C5400889AA7 /* BraveCore.xcframework */; };
 		D5ACA7D927FB7D0E002443CE /* MaterialComponents.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B68DD625C48EE9002D0826 /* MaterialComponents.xcframework */; };
@@ -1683,6 +1685,7 @@
 				27B68DF125C48F39002D0826 /* MaterialComponents.xcframework in Copy Frameworks */,
 				27F23D30282ABD0A00EDFDCC /* JitsiMeetSDK.xcframework in Copy Frameworks */,
 				5D1DC52920AC9AFB00905E5A /* Data.framework in Copy Frameworks */,
+				272B94B4282AC69C00DCBCCE /* GiphyUISDK.xcframework in Copy Frameworks */,
 				E60138661C89EB7D00DF9756 /* Storage.framework in Copy Frameworks */,
 				27AD20C426851C5400889AA7 /* BraveCore.xcframework in Copy Frameworks */,
 				27F23D32282ABD0A00EDFDCC /* WebRTC.xcframework in Copy Frameworks */,
@@ -1997,6 +2000,7 @@
 		2727369A24A65F650096DCB9 /* UIActionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActionExtensions.swift; sourceTree = "<group>"; };
 		2729E7D226F502AC00200648 /* AccountPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPicker.swift; sourceTree = "<group>"; };
 		272B862A270BD96F005ED304 /* SandboxInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxInspectorView.swift; sourceTree = "<group>"; };
+		272B94B2282AC69C00DCBCCE /* GiphyUISDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GiphyUISDK.xcframework; path = ThirdParty/JitsiMeet/GiphyUISDK.xcframework; sourceTree = "<group>"; };
 		273F980F281884A400C7E7D4 /* ForcePasteHelper.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ForcePasteHelper.js; sourceTree = "<group>"; };
 		273FCB9925A7BC5500F279B5 /* BraveNewsDebugSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BraveNewsDebugSettingsView.swift; sourceTree = "<group>"; };
 		274398E124E4827800E79605 /* FeedCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCard.swift; sourceTree = "<group>"; };
@@ -3456,6 +3460,7 @@
 				27756A8325ACFFEB00C129AF /* pop.framework in Frameworks */,
 				279A9BC02823370100F40FC6 /* SnapKit in Frameworks */,
 				27AD20C326851C5400889AA7 /* BraveCore.xcframework in Frameworks */,
+				272B94B3282AC69C00DCBCCE /* GiphyUISDK.xcframework in Frameworks */,
 				27F23D31282ABD0A00EDFDCC /* WebRTC.xcframework in Frameworks */,
 				E6231C051B90A472005ABB0D /* libxml2.2.tbd in Frameworks */,
 				E6231C011B90A44F005ABB0D /* libz.tbd in Frameworks */,
@@ -5894,6 +5899,7 @@
 		7B604FC11C496005006EEEC3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				272B94B2282AC69C00DCBCCE /* GiphyUISDK.xcframework */,
 				27F23D2D282ABD0A00EDFDCC /* JitsiMeetSDK.xcframework */,
 				27F23D2E282ABD0A00EDFDCC /* WebRTC.xcframework */,
 				27AD20C226851C5400889AA7 /* BraveCore.xcframework */,
@@ -14766,7 +14772,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/node_modules/brave-core-ios",
 					"$(PROJECT_DIR)/ThirdParty",
-					"$(PROJECT_DIR)/ThirdParty/GCDWebServers",
+					"$(PROJECT_DIR)/ThirdParty/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

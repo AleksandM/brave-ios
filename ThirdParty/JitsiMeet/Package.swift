@@ -19,5 +19,9 @@ let package = Package(
       name: "WebRTC",
       path: "WebRTC.xcframework"
     ),
+    .binaryTarget(
+      name: "GiphyUISDK",
+      path: "GiphyUISDK.xcframework"
+    ),
   ]
 )
