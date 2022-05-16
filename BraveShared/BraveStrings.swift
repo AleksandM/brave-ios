@@ -4688,21 +4688,21 @@ extension Strings {
     public static let resetAllDescription = NSLocalizedString(
       "pagezoom.settings.reset-all-description",
       bundle: .braveShared,
-      value: "Resets All Website Zoom Levels",
+      value: "Reset Website Zoom Levels",
       comment: "Description of the Web-Page Zoom reset all option"
     )
     
     public static let specificWebsitesZoomLevelsSectionTitle = NSLocalizedString(
       "pagezoom.settings.specificWebsitesZoomLevelsSectionTitle",
       bundle: .braveShared,
-      value: "Page Zoom Levels On",
+      value: "Specific Page Settings",
       comment: "Title for list of websites shown in settings screen"
     )
     
     public static let zoomViewText = NSLocalizedString(
       "pagezoom.zoomView.text",
       bundle: .braveShared,
-      value: "Zoom",
+      value: "Page Zoom",
       comment: "Title for the web-page zoom level view"
     )
     
@@ -4716,7 +4716,7 @@ extension Strings {
     public static let otherWebsiteZoomLevelSectionTitle = NSLocalizedString(
       "pagezoom.settings.otherWebsitesZoomLevelSectionTitle",
       bundle: .braveShared,
-      value: "Other Websites",
+      value: "All Other Websites",
       comment: "Title for the section for the Web-Page zoom level of other websites"
     )
     
