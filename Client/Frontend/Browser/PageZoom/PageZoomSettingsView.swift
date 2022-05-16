@@ -33,7 +33,7 @@ struct PageZoomSettingsView: View {
       if !domains.isEmpty {
         Section(
           header: Text(Strings.PageZoom.specificWebsitesZoomLevelsSectionTitle)
-            .font(.body)
+            .font(.subheadline)
             .foregroundColor(Color(.secondaryBraveLabel))
         ) {
           ForEach(domains) { domain in
@@ -60,7 +60,7 @@ struct PageZoomSettingsView: View {
       
       Section(
         header: Text(domains.isEmpty ? Strings.PageZoom.defaultZoomLevelSectionTitle : Strings.PageZoom.otherWebsiteZoomLevelSectionTitle)
-          .font(.body)
+          .font(.subheadline)
           .foregroundColor(Color(.secondaryBraveLabel))
       ) {
         ForEach(PageZoomView.steps, id: \.self) { step in
@@ -91,7 +91,7 @@ struct PageZoomSettingsView: View {
       if !domains.isEmpty {
         Section(
           header: Text(Strings.PageZoom.resetAllDescription)
-            .font(.body)
+            .font(.subheadline)
             .foregroundColor(Color(.secondaryBraveLabel))
         ) {
           Button(action: {
