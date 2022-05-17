@@ -44,14 +44,14 @@ extension WalletStore {
 }
 
 extension BrowserViewController {
-  func presentWalletPanel() {
+  func presentWalletPanel(origin: URLOrigin) {
     let privateMode = PrivateBrowsingManager.shared.isPrivateBrowsing
     guard let walletStore = WalletStore.from(privateMode: privateMode) else {
       return
     }
     let controller = WalletPanelHostingController(
       walletStore: walletStore,
-      origin: getOrigin(),
+      origin: origin,
       faviconRenderer: FavIconImageRenderer()
     )
     controller.delegate = self
@@ -80,14 +80,18 @@ extension BrowserViewController: BraveWalletDelegate {
   }
 }
 
-extension BrowserViewController: BraveWalletProviderDelegate {
+extension Tab: BraveWalletProviderDelegate {
   func showPanel() {
     // TODO: Show ad-like notification prompt before calling `presentWalletPanel`
-    presentWalletPanel()
+    guard let urlOrigin = url?.origin,
+          let browserViewController = webView?.currentScene?.browserViewController else {
+      return
+    }
+    browserViewController.presentWalletPanel(origin: urlOrigin)
   }
 
   func getOrigin() -> URLOrigin {
-    guard let origin = tabManager.selectedTab?.url?.origin else {
+    guard let origin = url?.origin else {
       assert(false, "We should have a valid origin to get to this point")
       return .init()
     }
@@ -98,6 +102,11 @@ extension BrowserViewController: BraveWalletProviderDelegate {
     Task { @MainActor in
       let permissionRequestManager = WalletProviderPermissionRequestsManager.shared
       let origin = getOrigin()
+      
+      guard let browserViewController = self.webView?.currentScene?.browserViewController else {
+        completion([], .userRejectedRequest, "Browser view controller should be available")
+        return
+      }
       
       if permissionRequestManager.hasPendingRequest(for: origin, coinType: .eth) {
         completion([], .userRejectedRequest, "A request is already in progress")
@@ -148,25 +157,19 @@ extension BrowserViewController: BraveWalletProviderDelegate {
             if status == .success, !accounts.isEmpty {
               permissionRequestManager.cancelRequest(request)
               completion(accounts, .success, "")
-              self.dismiss(animated: true)
+              browserViewController.dismiss(animated: true)
               return
             }
           }
         }
       )
-      permissions.delegate = self
-      present(permissions, animated: true)
+      permissions.delegate = browserViewController
+      browserViewController.present(permissions, animated: true)
     }
   }
+}
 
-  func allowedAccounts(_ includeAccountsWhenLocked: Bool) async -> ([String], BraveWallet.ProviderError, String) {
-    guard let selectedTab = tabManager.selectedTab else {
-      return ([], .internalError, "Internal error")
-    }
-    updateURLBarWalletButton()
-    return await selectedTab.allowedAccounts(includeAccountsWhenLocked)
-  }
-
+extension BrowserViewController {
   func updateURLBarWalletButton() {
     topToolbar.locationView.walletButton.buttonState =
     tabManager.selectedTab?.isWalletIconVisible == true ? .active : .inactive
